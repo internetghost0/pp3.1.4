@@ -105,6 +105,44 @@
                                                 </table>
                                             </div>
                                         </div>
+                                    </div> <!-- end #allUsers -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end #adminPanel -->
+                <div role="tabpanel" class="tab-pane" id="userPanel">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="container">
+                                <h1>User information-page</h1>
+                                <div class="card mx-auto">
+                                    <div class="card-header fw-semibold fs-4 bg-light">
+                                        About user
+                                    </div>
+                                    <div class="card-body ">
+                                        <table class="table table-striped bg-white">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Age</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="user : ${users}">
+                                                <td th:text="${user.getId()}">user</td>
+                                                <td th:text="${user.getFirstName()}">user</td>
+                                                <td th:text="${user.getLastName()}">user</td>
+                                                <td th:text="${user.getAge()}">user</td>
+                                                <td th:text="${user.getEmail()}">user</td>
+                                                <td th:text="${user.getRolesString()}">user</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

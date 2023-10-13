@@ -20,12 +20,12 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    @ResponseBody
     public String showUserById(ModelMap model) {
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(authentication.getName());
         model.addAttribute("user", user);
-        return "TODO";
+        model.addAttribute("thisUser", user);
+        return "user_panel";
     }
 }
