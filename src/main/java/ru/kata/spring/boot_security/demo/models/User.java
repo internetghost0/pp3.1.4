@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -56,6 +55,10 @@ public class User implements UserDetails, Comparable<User> {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
         return email;
@@ -95,10 +98,6 @@ public class User implements UserDetails, Comparable<User> {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstName() {

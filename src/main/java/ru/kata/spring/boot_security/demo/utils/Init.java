@@ -32,6 +32,5 @@ public class Init {
         userService.saveOrUpdateUser(user);
 
 
-
     }
 }
