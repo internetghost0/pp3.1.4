@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.models.Role;
@@ -44,7 +43,7 @@ public class AdminController {
     @PostMapping("/new")
     public String createUser(@ModelAttribute("user") User user, @ModelAttribute("role") String role) {
         user.setRolesSet(
-                roleService.getAllRoles().stream().anyMatch(r -> r.getEmail().equals(role)) ?
+                roleService.getAllRoles().stream().anyMatch(r -> r.getName().equals(role)) ?
                         roleService.findByNameRole(role).toSet() :
                         roleService.findByNameRole("ROLE_USER").toSet());
         userService.saveOrUpdateUser(user);
@@ -55,7 +54,7 @@ public class AdminController {
     public String updateUser(@PathVariable Long id, @ModelAttribute User user, @RequestParam(value = "role") String role) {
         if (user != null) {
             user.setRolesSet(
-                    roleService.getAllRoles().stream().anyMatch(r -> r.getEmail().equals(role)) ?
+                    roleService.getAllRoles().stream().anyMatch(r -> r.getName().equals(role)) ?
                             roleService.findByNameRole(role).toSet() :
                             roleService.findByNameRole("ROLE_USER").toSet());
             if (user.getPassword() == null || user.getPassword().isEmpty()) {

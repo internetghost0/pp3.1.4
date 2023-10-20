@@ -133,7 +133,7 @@ public class User implements UserDetails, Comparable<User> {
     }
 
     public String getRolesString() {
-        return rolesSet.stream().map(role -> role.getEmail().replace("ROLE_", "")).collect(Collectors.joining(" "));
+        return rolesSet.stream().map(role -> role.getName().replace("ROLE_", "")).collect(Collectors.joining(" "));
     }
 
     @Override
