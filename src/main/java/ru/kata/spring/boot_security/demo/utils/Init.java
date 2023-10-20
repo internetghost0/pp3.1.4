@@ -28,7 +28,7 @@ public class Init {
         User adminUser2 = new User("1@", "1", "1", "1", 1, roleService.getAllRoles());
         userService.saveOrUpdateUser(adminUser2);
 
-        User user = new User("user@mail.ru", "user", "user", "user", 35, roleService.findByNameRole("ROLE_USER").toSet());
+        User user = new User("user@mail.ru", "user", "user", "user", 35, roleService.findByNameRole("ROLE_USER").get().toSet());
         userService.saveOrUpdateUser(user);
 
 

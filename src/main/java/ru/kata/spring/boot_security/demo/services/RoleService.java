@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.services;
 
 import ru.kata.spring.boot_security.demo.models.Role;
 
+import java.util.Optional;
 import java.util.Set;
 
 public interface RoleService {
@@ -9,5 +10,5 @@ public interface RoleService {
 
     void saveOrUpdateRole(Role role);
 
-    Role findByNameRole(String name);
+    Optional<Role> findByNameRole(String name);
 }

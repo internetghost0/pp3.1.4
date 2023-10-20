@@ -12,6 +12,7 @@ import ru.kata.spring.boot_security.demo.services.RoleService;
 import ru.kata.spring.boot_security.demo.services.UserService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -42,10 +43,9 @@ public class AdminController {
 
     @PostMapping("/new")
     public String createUser(@ModelAttribute("user") User user, @ModelAttribute("role") String role) {
-        user.setRolesSet(
-                roleService.getAllRoles().stream().anyMatch(r -> r.getName().equals(role)) ?
-                        roleService.findByNameRole(role).toSet() :
-                        roleService.findByNameRole("ROLE_USER").toSet());
+        user.setRolesSet(roleService.findByNameRole(role)
+                .orElse(roleService.findByNameRole("ROLE_USER").get()));
+
         userService.saveOrUpdateUser(user);
         return "redirect:/admin";
     }
@@ -53,10 +53,9 @@ public class AdminController {
     @PostMapping("/edit/{id}")
     public String updateUser(@PathVariable Long id, @ModelAttribute User user, @RequestParam(value = "role") String role) {
         if (user != null) {
-            user.setRolesSet(
-                    roleService.getAllRoles().stream().anyMatch(r -> r.getName().equals(role)) ?
-                            roleService.findByNameRole(role).toSet() :
-                            roleService.findByNameRole("ROLE_USER").toSet());
+            user.setRolesSet(roleService.findByNameRole(role)
+                    .orElse(roleService.findByNameRole("ROLE_USER").get()));
+
             if (user.getPassword() == null || user.getPassword().isEmpty()) {
                 user.setPassword(userService.findUserByID(id).getPassword());
             } else {

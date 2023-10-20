@@ -131,6 +131,9 @@ public class User implements UserDetails, Comparable<User> {
     public void setRolesSet(Set<Role> rolesSet) {
         this.rolesSet = rolesSet;
     }
+    public void setRolesSet(Role role) {
+        this.rolesSet = role.toSet();
+    }
 
     public String getRolesString() {
         return rolesSet.stream().map(role -> role.getName().replace("ROLE_", "")).collect(Collectors.joining(" "));

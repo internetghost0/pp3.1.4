@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         if (user.getId() == null && userRepository.findByEmail(user.getEmail()) != null) {
             return false;
         }
-        user.getRolesSet().add(roleService.findByNameRole("ROLE_USER"));
+        user.getRolesSet().add(roleService.findByNameRole("ROLE_USER").get());
 
         if (user.getId() == null) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

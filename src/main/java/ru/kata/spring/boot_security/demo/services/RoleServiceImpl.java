@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.repositories.RoleRepository;
 
+import javax.swing.text.html.Option;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 
@@ -30,7 +32,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role findByNameRole(String name) {
-        return roleRepository.findByName(name);
+    public Optional<Role> findByNameRole(String name) {
+        Role role = roleRepository.findByName(name);
+        if (role != null) {
+            return Optional.of(role);
+        }
+        return Optional.empty();
     }
 }
