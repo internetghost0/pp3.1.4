@@ -131,6 +131,7 @@ public class User implements UserDetails, Comparable<User> {
     public void setRolesSet(Set<Role> rolesSet) {
         this.rolesSet = rolesSet;
     }
+
     public void setRolesSet(Role role) {
         this.rolesSet = role.toSet();
     }
