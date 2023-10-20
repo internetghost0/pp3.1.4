@@ -208,7 +208,7 @@
                                                              tabindex="-1"
                                                              th:id="${'delete'+user.id}">
                                                             <form th:action="@{/admin/delete/{id}(id=${user.id})}"
-                                                                  th:method="post">
+                                                                  th:method="get">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -338,9 +338,11 @@
                                                             <div class="mb-3">
                                                                 <label class="form-label" for="roles">Roles:</label>
                                                                 <select class="form-select" id="roles" multiple
-                                                                        name="roles">
-                                                                    <th:block th:each="role : ${allRoles}">
-                                                                        <option th:text="${role}"></option>
+                                                                        name="role">
+                                                                    <th:block
+                                                                            th:each="role : ${allRoles}">
+                                                                        <option th:text="${role}"
+                                                                                th:value="'ROLE_' + ${role}"></option>
                                                                     </th:block>
                                                                 </select>
                                                             </div>
